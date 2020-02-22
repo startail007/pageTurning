@@ -12,9 +12,20 @@
   <body>
     <div class="pages">
       <div class="page" id="start">
-        <div class="text">開始</div>
+        <div class="text">請翻頁</div>
       </div>
       <div class="page" id="page01">
+        <div class="pageContent">
+          <div class="img">
+            <img src="https://firebasestorage.googleapis.com/v0/b/cai-pusc007.appspot.com/o/cai001%2Fcontent%2F3D%2F-L9dkBtBlcaxMFc_Q5v3?alt=media&token=a6d07052-a4af-4140-b877-212f2431ed7a" />
+          </div>
+          <div class="img">
+            <img src="https://firebasestorage.googleapis.com/v0/b/cai-pusc007.appspot.com/o/cai001%2Fcontent%2F3D%2F-L9dkPDnqG_jiFIpWp4O?alt=media&token=2b84fd48-5f3e-4ea6-b82c-9b95d7a0de2a" />
+          </div>
+          <div class="img">
+            <img src="https://firebasestorage.googleapis.com/v0/b/cai-pusc007.appspot.com/o/cai001%2Fcontent%2F3D%2F-L9dkN41yOZOaMtuhxwk?alt=media&token=ac3e4d87-ee8a-4910-909f-83faa6e11867" />
+          </div>
+        </div>
         <div class="text">第1頁</div>
       </div>
       <div class="page" id="page02">
@@ -33,10 +44,10 @@
         <div class="text">第6頁</div>
       </div>
       <div class="page" id="end">
-        <div class="text">結束</div>
+        <div class="text">end</div>
       </div>
     </div>
-    <div class="book" onSelectStart="event.returnValue=false">
+    <div class="book" onSelectStart="event.returnValue=false" onDRAGSTART="window.event.returnValue=false">
       <div class="content">
         <div class="openedBack">
           <div class="back">

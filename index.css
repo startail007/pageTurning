@@ -22,6 +22,7 @@ body {
   display: block;
   top: 0px;
   box-shadow: inset 0px 0px 2px rgba(0, 0, 0, 1);
+  overflow: hidden;
 }
 .book .bottom .bottomPage.left {
   left: 0px;
@@ -69,6 +70,7 @@ body {
   position: absolute;
   display: block;
   //filter: blur(10px);
+  pointer-events: none;
 }
 
 .bookControl {
@@ -92,38 +94,93 @@ body {
   background-color: #ddd;
 }
 .page {
-  display: flex;
+  position: relative;
+  display: block;
   width: 100%;
   height: 100%;
-  color: auto;
-  justify-content: center;
-  align-items: center;
+  /*justify-content: center;
+  align-items: flex-end;*/
+  /*background-position: 50% 0%;
+  background-size: auto 100%;*/
+}
+.pageContent {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+}
+/*.page:hover {
+  animation: move 10s linear infinite;
+}*/
+#start {
+  background-position: center top;
+  background-size: cover;
+  background-image: url(https://firebasestorage.googleapis.com/v0/b/cai-pusc007.appspot.com/o/cai001%2Fcontent%2F3D%2F-L9dkK5XX1MCy54V2vBr?alt=media&token=c3863680-7c79-491a-b379-12618e921691);
 }
 #page01 {
-  background-color: #f00;
+  background-color: #730303;
+  //background-image: url(https://firebasestorage.googleapis.com/v0/b/cai-pusc007.appspot.com/o/cai001%2Fcontent%2F3D%2F-L9dkBtBlcaxMFc_Q5v3?alt=media&token=a6d07052-a4af-4140-b877-212f2431ed7a);
 }
 #page02 {
   background-color: #0f0;
+  //background-image: url(https://firebasestorage.googleapis.com/v0/b/cai-pusc007.appspot.com/o/cai001%2Fcontent%2F3D%2F-L9dkPDnqG_jiFIpWp4O?alt=media&token=2b84fd48-5f3e-4ea6-b82c-9b95d7a0de2a);
 }
 #page03 {
   background-color: #00f;
+  //background-image: url(https://firebasestorage.googleapis.com/v0/b/cai-pusc007.appspot.com/o/cai001%2Fcontent%2F3D%2F-L9dkN41yOZOaMtuhxwk?alt=media&token=ac3e4d87-ee8a-4910-909f-83faa6e11867);
 }
 #page04 {
   background-color: #ff0;
+  //background-image: url(https://firebasestorage.googleapis.com/v0/b/cai-pusc007.appspot.com/o/cai001%2Fcontent%2F3D%2F-L9dkRiH78_Wgq2WC0TY?alt=media&token=840a2c9a-3127-432e-8ad0-cd4bdf1d9d91);
 }
 #page05 {
   background-color: #0ff;
+  //background-image: url(https://firebasestorage.googleapis.com/v0/b/cai-pusc007.appspot.com/o/cai001%2Fcontent%2F3D%2F-L9dkK5XX1MCy54V2vBr?alt=media&token=c3863680-7c79-491a-b379-12618e921691);
 }
 #page06 {
   background-color: #f0f;
+  //background-image: url(https://firebasestorage.googleapis.com/v0/b/cai-pusc007.appspot.com/o/cai001%2Fcontent%2F3D%2F-L9dk9kA5KVW9fKyG7x9?alt=media&token=43ee59c9-f01a-455d-8336-c314723690b4);
 }
 .page .text {
-  font-size: 40px;
+  position: absolute;
+  display: block;
+  font-size: 20px;
   text-align: center;
   text-indent: 0.25em;
   letter-spacing: 0.25em;
+  /*padding: 10px;*/
+  text-shadow: 0px 0px 2px #fff;
+  font-weight: bold;
+  width: 100%;
+  left: 0px;
+  bottom: 20px;
 }
-
+.page .img {
+  position: relative;
+  display: block;
+  font-size: 0px;
+}
+.page .img img {
+  width: 100%;
+}
+@keyframes move {
+  0% {
+    background-position: 50% 0%;
+  }
+  25% {
+    background-position: 100% 0%;
+  }
+  50% {
+    background-position: 50% 0%;
+  }
+  75% {
+    background-position: 0% 0%;
+  }
+  100% {
+    background-position: 50% 0%;
+  }
+}
 @keyframes rotate {
   0% {
     transform: rotate(0deg);
