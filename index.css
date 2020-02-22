@@ -1,0 +1,147 @@
+body {
+  margin: 0;
+}
+* {
+  font-family: "Noto Sans TC", sans-serif;
+}
+.pages {
+  display: none;
+}
+.book {
+  position: relative;
+  display: block;
+  background-color: #ddd;
+  overflow: hidden;
+}
+.book .bottom {
+  position: absolute;
+  display: block;
+}
+.book .bottom .bottomPage {
+  position: absolute;
+  display: block;
+  top: 0px;
+  box-shadow: inset 0px 0px 2px rgba(0, 0, 0, 1);
+}
+.book .bottom .bottomPage.left {
+  left: 0px;
+  background-color: #fff;
+}
+.book .bottom .bottomPage.right {
+  background-color: #fff;
+}
+.book .content {
+  position: relative;
+  display: block;
+}
+
+.book .content .openedBack {
+  position: absolute;
+  display: block;
+}
+.book .content .openedCorner {
+  position: absolute;
+  display: block;
+}
+
+.back {
+  position: absolute;
+  display: block;
+  background-color: #fff;
+  overflow: hidden;
+  box-shadow: inset 0px 0px 2px rgba(0, 0, 0, 1);
+}
+.corner {
+  position: absolute;
+  display: block;
+  background-color: #fff;
+  box-shadow: inset 0px 0px 2px rgba(0, 0, 0, 1);
+  overflow: hidden;
+}
+.item {
+  position: absolute;
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.shadow {
+  position: absolute;
+  display: block;
+  //filter: blur(10px);
+}
+
+.bookControl {
+  position: absolute;
+  display: block;
+  width: 100%;
+  text-align: center;
+  left: 0px;
+  bottom: 20px;
+}
+.button {
+  position: relative;
+  display: inline-block;
+  padding: 10px;
+  background-color: #fff;
+  border: 1px solid #aaa;
+  border-radius: 10px;
+  cursor: pointer;
+}
+.button:hover {
+  background-color: #ddd;
+}
+.page {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  color: auto;
+  justify-content: center;
+  align-items: center;
+}
+#page01 {
+  background-color: #f00;
+}
+#page02 {
+  background-color: #0f0;
+}
+#page03 {
+  background-color: #00f;
+}
+#page04 {
+  background-color: #ff0;
+}
+#page05 {
+  background-color: #0ff;
+}
+#page06 {
+  background-color: #f0f;
+}
+.page .text {
+  font-size: 40px;
+  text-align: center;
+  text-indent: 0.25em;
+  letter-spacing: 0.25em;
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(180deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}
+.box {
+  position: absolute;
+  display: block;
+  width: 40px;
+  height: 40px;
+  left: 20px;
+  top: 20px;
+  background-color: #000;
+  /*animation: rotate 2s linear infinite;*/
+}

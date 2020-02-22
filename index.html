@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link href="https://fonts.googleapis.com/css?family=Noto+Sans+TC&display=swap" rel="stylesheet" />
+    <link href="index.css" rel="stylesheet" />
+    <script src="ease.js"></script>
+    <script src="index.js"></script>
+  </head>
+  <body>
+    <div class="pages">
+      <div class="page" id="start">
+        <div class="text">開始</div>
+      </div>
+      <div class="page" id="page01">
+        <div class="text">第1頁</div>
+      </div>
+      <div class="page" id="page02">
+        <div class="text">第2頁</div>
+      </div>
+      <div class="page" id="page03">
+        <div class="text">第3頁</div>
+      </div>
+      <div class="page" id="page04">
+        <div class="text">第4頁</div>
+      </div>
+      <div class="page" id="page05">
+        <div class="text">第5頁</div>
+      </div>
+      <div class="page" id="page06">
+        <div class="text">第6頁</div>
+      </div>
+      <div class="page" id="end">
+        <div class="text">結束</div>
+      </div>
+    </div>
+    <div class="book" onSelectStart="event.returnValue=false">
+      <div class="content">
+        <div class="openedBack">
+          <div class="back">
+            <div class="item"></div>
+          </div>
+        </div>
+        <div class="bottom">
+          <div class="bottomPage left">
+            <div class="item"></div>
+          </div>
+          <div class="bottomPage right">
+            <div class="item"></div>
+          </div>
+        </div>
+        <div class="openedCorner">
+          <svg class="shadow" version="1.1" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="shadow01" x1="0" y1="0" x2="0" y2="0" gradientUnits="userSpaceOnUse">
+                <stop offset="0%" />
+                <stop offset="0%" />
+                <stop offset="100%" />
+              </linearGradient>
+              <linearGradient id="shadow02" x1="0" y1="0" x2="0" y2="0" gradientUnits="userSpaceOnUse">
+                <stop offset="0%" />
+                <stop offset="0%" />
+                <stop offset="100%" />
+              </linearGradient>
+            </defs>
+            <rect class="shadow01" fill="url(#shadow01)" />
+            <rect class="shadow02" fill="url(#shadow02)" />
+          </svg>
+          <div class="corner">
+            <div class="item"></div>
+          </div>
+        </div>
+      </div>
+      <div class="bookControl">
+        <div class="button prev">上一頁</div>
+        <div class="button next">下一頁</div>
+      </div>
+    </div>
+  </body>
+</html>
