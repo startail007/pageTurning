@@ -355,14 +355,14 @@
     function setCorner(up, down, side, rate, type, x, y, width, height) {
       var r = type.charAt(0) === "r" ? 1 : 0;
       var b = type.charAt(1) === "b" ? 1 : 0;
-      back.style.clipPath = getCornerPolygon(up, down, side, type);
-      corner.style.clipPath = getCornerPolygon(up, down, side, (r ? "l" : "r") + type.charAt(1));
+      back.style.clipPath = back.style.WebkitClipPath = getCornerPolygon(up, down, side, type);
+      corner.style.clipPath = corner.style.WebkitClipPath = getCornerPolygon(up, down, side, (r ? "l" : "r") + type.charAt(1));
       if (type.charAt(0) === "r") {
-        bottomPage_left.style.clipPath = "";
-        bottomPage_right.style.clipPath = getHideCornerPolygon(up, down, side, type);
+        bottomPage_left.style.clipPath = bottomPage_left.style.WebkitClipPath = "";
+        bottomPage_right.style.clipPath = bottomPage_right.style.WebkitClipPath = getHideCornerPolygon(up, down, side, type);
       } else {
-        bottomPage_left.style.clipPath = getHideCornerPolygon(up, down, side, type);
-        bottomPage_right.style.clipPath = "";
+        bottomPage_left.style.clipPath = bottomPage_left.style.WebkitClipPath = getHideCornerPolygon(up, down, side, type);
+        bottomPage_right.style.clipPath = bottomPage_right.style.WebkitClipPath = "";
       }
       var angle = Math.atan2(y, rate * (x - up)) / PI180;
       var Transform01 = new transform();
