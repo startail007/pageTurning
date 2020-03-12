@@ -588,10 +588,10 @@
       mpOld.set(mp);
       corneringJudge();
       start();
-      /*if (opening) {
+      if (opening) {
         e.preventDefault();
         e.stopPropagation();
-      }*/
+      }
     });
     book.addEventListener("touchend", function(e) {
       end();
@@ -599,11 +599,10 @@
     book.addEventListener("touchmove", function(e) {
       var TP = TouchesPoint(e.touches);
       move(TP.pos);
-      /*console.log(opening);
       if (opening) {
         e.preventDefault();
         e.stopPropagation();
-      }*/
+      }
     });
     /*document.body.addEventListener(
       "touchmove",
