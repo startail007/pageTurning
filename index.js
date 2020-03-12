@@ -596,6 +596,13 @@
       var TP = TouchesPoint(e.touches);
       move(TP.pos);
     });
+    document.body.addEventListener(
+      "touchmove",
+      function(e) {
+        e.preventDefault();
+      },
+      { passive: false }
+    );
     function setMp(pos) {
       mpOld.set(mp);
       var contentPos = getPos(content);
