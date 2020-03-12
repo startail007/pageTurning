@@ -523,7 +523,7 @@
       setCorner(temp.up, temp.down, temp.side, rate, type, pp.x / width, pp.y / height, width, height);
       return pp;
     }
-
+    var mpOld = new vector2D(0, 0);
     var mp = new vector2D(0, 0);
     var cornerPos = new vector2D(0, 0);
     var fourCornerPos = {
@@ -550,13 +550,64 @@
     var changeing = false;
     var moveX = 0;
 
+    function TouchesPoint(pTouches) {
+      var p = new Array();
+      var c = new vector2D();
+      var d = 0;
+      if (pTouches) {
+        var len = pTouches.length;
+        for (var i = 0; i < len; i++) {
+          p[i] = new vector2D(pTouches[i].pageX, pTouches[i].pageY);
+          c.add(p[i]);
+        }
+        c.scale(1 / len);
+        if (len == 2) {
+          d = p[1].sub(p[0]).len();
+        }
+      }
+      return {
+        pos: c,
+        dis: d
+      };
+    }
+
     book.addEventListener("mousedown", function(e) {
+      start();
+    });
+    window.addEventListener("mouseup", function(e) {
+      end();
+    });
+    book.addEventListener("mousemove", function(e) {
+      move(new vector2D(e.pageX, e.pageY));
+      corneringJudge();
+    });
+
+    book.addEventListener("touchstart", function(e) {
+      var TP = TouchesPoint(e.touches);
+      setMp(TP.pos);
+      mpOld.set(mp);
+      corneringJudge();
+      start();
+    });
+    book.addEventListener("touchend", function(e) {
+      end();
+    });
+    book.addEventListener("touchmove", function(e) {
+      var TP = TouchesPoint(e.touches);
+      move(TP.pos);
+    });
+    function setMp(pos) {
+      mpOld.set(mp);
+      var contentPos = getPos(content);
+      mp.set(pos.x - contentPos.left, pos.y - contentPos.top);
+    }
+    function start() {
       if (!opening && cornering && !animationing) {
         opening = true;
         animationing = false;
       }
-    });
-    window.addEventListener("mouseup", function(e) {
+    }
+    function end() {
       if (opening) {
         opening = false;
         animationing = true;
@@ -574,12 +625,53 @@
           }
         }
       }
-    });
-    book.addEventListener("mousemove", function(e) {
-      var contentPos = getPos(content);
+    }
+    function move(pos) {
+      /*var contentPos = getPos(content);
       mp.set(e.pageX - contentPos.left, e.pageY - contentPos.top);
-      moveX = e.movementX;
-    });
+      moveX = e.movementX;*/
+      setMp(pos);
+      moveX = mp.clone().sub(mpOld).x;
+    }
+
+    function corneringJudge() {
+      if (!opening && !animationing) {
+        if (mp.x >= 0 && mp.x <= width * 2 && mp.y >= 0 && mp.y <= height) {
+          var bool = false;
+          for (var key in fourCornerPos) {
+            if (fourCornerBool[key]) {
+              var obj = fourCornerPos[key];
+              var length = obj
+                .clone()
+                .sub(mp)
+                .length();
+              if (length <= 100) {
+                if (type !== key) {
+                  type = key;
+                  cornerPos.set(obj);
+                  setCornerContent(pageNum, type);
+                  setCornerActive(pageNum);
+                }
+                animationing = false;
+                bool = true;
+                break;
+              }
+            }
+          }
+          if (cornering !== bool) {
+            cornering = bool;
+            if (!cornering) {
+              animationing = true;
+            }
+          }
+        } else {
+          if (cornering) {
+            cornering = false;
+            animationing = true;
+          }
+        }
+      }
+    }
 
     buttonPrev.addEventListener("click", function(e) {
       var type01 = "lt";
@@ -669,42 +761,6 @@
     }
     function run() {
       window.requestAnimationFrame(run);
-      if (!opening && !animationing) {
-        if (mp.x >= 0 && mp.x <= width * 2 && mp.y >= 0 && mp.y <= height) {
-          var bool = false;
-          for (var key in fourCornerPos) {
-            if (fourCornerBool[key]) {
-              var obj = fourCornerPos[key];
-              var length = obj
-                .clone()
-                .sub(mp)
-                .length();
-              if (length <= 100) {
-                if (type !== key) {
-                  type = key;
-                  cornerPos.set(obj);
-                  setCornerContent(pageNum, type);
-                  setCornerActive(pageNum);
-                }
-                animationing = false;
-                bool = true;
-                break;
-              }
-            }
-          }
-          if (cornering !== bool) {
-            cornering = bool;
-            if (!cornering) {
-              animationing = true;
-            }
-          }
-        } else {
-          if (cornering) {
-            cornering = false;
-            animationing = true;
-          }
-        }
-      }
 
       if (animationing) {
         var type01 = changeing ? (type.charAt(0) === "r" ? "l" : "r") + type.charAt(1) : type;
