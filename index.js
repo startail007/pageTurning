@@ -588,6 +588,8 @@
       mpOld.set(mp);
       corneringJudge();
       start();
+      e.preventDefault();
+      e.stopPropagation();
     });
     book.addEventListener("touchend", function(e) {
       end();
@@ -595,14 +597,16 @@
     book.addEventListener("touchmove", function(e) {
       var TP = TouchesPoint(e.touches);
       move(TP.pos);
+      e.preventDefault();
+      e.stopPropagation();
     });
-    document.body.addEventListener(
+    /*document.body.addEventListener(
       "touchmove",
       function(e) {
         e.preventDefault();
       },
       { passive: false }
-    );
+    );*/
     function setMp(pos) {
       mpOld.set(mp);
       var contentPos = getPos(content);
