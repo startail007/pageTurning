@@ -1,6 +1,6 @@
-(function() {
+(function () {
   Object.defineProperty(Math, "crop", {
-    value: function(value, min, max) {
+    value: function (value, min, max) {
       if (min === undefined) {
         min = 0;
       }
@@ -14,11 +14,11 @@
         return max;
       }
       return value;
-    }
+    },
   });
 
   Object.defineProperty(SVGPoint.prototype, "set", {
-    value: function(x, y) {
+    value: function (x, y) {
       function getArguments(data) {
         var p = { x: 0, y: 0 };
         if (typeof data[0] === "number") {
@@ -34,16 +34,16 @@
       this.x = p.x;
       this.y = p.y;
       return this;
-    }
+    },
   });
   Object.defineProperty(SVGLinearGradientElement.prototype, "setLine", {
-    value: function(x1, y1, x2, y2) {
+    value: function (x1, y1, x2, y2) {
       this.x1.baseVal.value = x1;
       this.y1.baseVal.value = y1;
       this.x2.baseVal.value = x2;
       this.y2.baseVal.value = y2;
       return this;
-    }
+    },
   });
 
   function getPos(el) {
@@ -57,10 +57,10 @@
     }
     return {
       left: parentLeft + el.offsetLeft + el.clientLeft,
-      top: parentTop + el.offsetTop + el.clientTop
+      top: parentTop + el.offsetTop + el.clientTop,
     };
   }
-  var vector2D = function() {
+  var vector2D = function () {
     function getArguments(data) {
       var p = { x: 0, y: 0 };
       if (typeof data[0] === "number") {
@@ -75,55 +75,55 @@
     var p = getArguments(arguments);
     this.x = p.x;
     this.y = p.y;
-    this.length = function() {
+    this.length = function () {
       return Math.sqrt(this.x * this.x + this.y * this.y);
     };
-    this.slope = function() {
+    this.slope = function () {
       return this.x / this.y;
     };
-    this.dot = function(v) {
+    this.dot = function (v) {
       return this.x * v.x + this.y * v.y;
     };
-    this.cross = function(v) {
+    this.cross = function (v) {
       return this.x * v.y - this.y * v.x;
     };
-    this.set = function() {
+    this.set = function () {
       var p = getArguments(arguments);
       this.x = p.x;
       this.y = p.y;
       return this;
     };
-    this.scale = function() {
+    this.scale = function () {
       var p = getArguments(arguments);
       this.x *= p.x;
       this.y *= p.y;
       return this;
     };
-    this.add = function() {
+    this.add = function () {
       var p = getArguments(arguments);
       this.x += p.x;
       this.y += p.y;
       return this;
     };
-    this.sub = function(v) {
+    this.sub = function (v) {
       var p = getArguments(arguments);
       this.x -= p.x;
       this.y -= p.y;
       return this;
     };
-    this.swap = function() {
+    this.swap = function () {
       var temp = this.x;
       this.x = -this.y;
       this.y = temp;
       return this;
     };
-    this.normalize = function() {
+    this.normalize = function () {
       var r = this.length();
       this.x /= r;
       this.y /= r;
       return this;
     };
-    this.rotate = function(pAngle) {
+    this.rotate = function (pAngle) {
       var cos0 = Math.cos(pAngle);
       var sin0 = Math.sin(pAngle);
       var xx = this.x * cos0 - this.y * sin0;
@@ -132,72 +132,72 @@
       this.y = yy;
       return this;
     };
-    this.projection = function(v) {
+    this.projection = function (v) {
       var temp = this.dot(v) / v.length();
       return new vector2D(v.x * temp, v.y * temp);
     };
-    this.clone = function() {
+    this.clone = function () {
       return new vector2D(this.x, this.y);
     };
   };
-  var transform = function() {
+  var transform = function () {
     var value = "";
-    this.clear = function() {
+    this.clear = function () {
       value = "";
       return this;
     };
-    this.toString = function() {
+    this.toString = function () {
       return value;
     };
-    this.addTranslateX = function(pValue) {
+    this.addTranslateX = function (pValue) {
       value += " translateX(" + pValue * 100 + "%)";
       return this;
     };
-    this.addTranslateY = function(pValue) {
+    this.addTranslateY = function (pValue) {
       value += " translateY(" + pValue * 100 + "%)";
       return this;
     };
-    this.addScaleX = function(pValue) {
+    this.addScaleX = function (pValue) {
       value += " scaleX(" + pValue + ")";
       return this;
     };
-    this.addScaleY = function(pValue) {
+    this.addScaleY = function (pValue) {
       value += " scaleY(" + pValue + ")";
       return this;
     };
-    this.addSkewX = function(pValue) {
+    this.addSkewX = function (pValue) {
       value += " skewX(" + pValue + "deg)";
       return this;
     };
-    this.addRotate = function(pValue) {
+    this.addRotate = function (pValue) {
       value += " rotate(" + pValue + "deg)";
       return this;
     };
   };
-  var polygon = function() {
+  var polygon = function () {
     var value = "";
-    this.clear = function() {
+    this.clear = function () {
       value = "";
       return this;
     };
-    this.toString = function() {
+    this.toString = function () {
       if (value === "") {
         return "";
       }
       return "polygon(" + value.substring(1, value.length - 1) + ")";
     };
-    this.addPoint = function(pX, pY) {
+    this.addPoint = function (pX, pY) {
       value += " " + pX * 100 + "% " + pY * 100 + "%,";
       return this;
     };
-    this.addPoints = function(pA) {
-      pA.forEach(function(el) {
+    this.addPoints = function (pA) {
+      pA.forEach(function (el) {
         this.addPoint(el[0], el[1]);
       }, this);
       return this;
     };
   };
-  window.addEventListener("load", function() {
+  window.addEventListener("load", function () {
     var book = document.querySelector(".book");
     var content = book.querySelector(".content");
     var bottom = book.querySelector(".bottom");
@@ -222,9 +222,9 @@
 
     var corner_shadow01_color = openedCorner.querySelector("#shadow01");
     var corner_shadow02_color = openedCorner.querySelector("#shadow02");
-    var bookControl = book.querySelector(".bookControl");
-    var buttonPrev = bookControl.querySelector(".button.prev");
-    var buttonNext = bookControl.querySelector(".button.next");
+    //var bookControl = document.querySelector(".bookControl");
+    var buttonPrev = document.querySelector(".bookControl .button.prev");
+    var buttonNext = document.querySelector(".bookControl .button.next");
 
     //console.log(shadow01.width);
 
@@ -235,8 +235,8 @@
     }
 
     var PI180 = Math.PI / 180;
-    var width = 400;
-    var height = 600;
+    var width = 500;
+    var height = 400;
     var rate = width / height;
     var hypotenuse = Math.sqrt(width * width + height * height);
 
@@ -253,7 +253,7 @@
     bottomPage_right.style.width = width + "px";
     bottomPage_right.style.height = height + "px";
     bottomPage_right.style.left = width + "px";
-    book.style.padding = hypotenuse - height + 20 + "px" + " " + 20 + "px";
+    //book.style.padding = hypotenuse - height + 20 + "px" + " " + 20 + "px";//擴展延伸空間
     shadow.style.width = width * 2;
     shadow.style.height = height;
     shadow01.x.baseVal.value = 0;
@@ -329,20 +329,14 @@
         }
       } else {
         if (type.charAt(1) === "b") {
-          polygon01
-            .addPoint(1, 0)
-            .addPoint(1, 1)
-            .addPoint(up, 1);
+          polygon01.addPoint(1, 0).addPoint(1, 1).addPoint(up, 1);
           if (up * down === 0) {
             polygon01.addPoint(0, 1 - side).addPoint(0, 0);
           } else {
             polygon01.addPoint(down, 0);
           }
         } else {
-          polygon01
-            .addPoint(up, 0)
-            .addPoint(1, 0)
-            .addPoint(1, 1);
+          polygon01.addPoint(up, 0).addPoint(1, 0).addPoint(1, 1);
           if (up * down === 0) {
             polygon01.addPoint(0, 1).addPoint(0, side);
           } else {
@@ -356,12 +350,27 @@
       var r = type.charAt(0) === "r" ? 1 : 0;
       var b = type.charAt(1) === "b" ? 1 : 0;
       back.style.clipPath = back.style.WebkitClipPath = getCornerPolygon(up, down, side, type);
-      corner.style.clipPath = corner.style.WebkitClipPath = getCornerPolygon(up, down, side, (r ? "l" : "r") + type.charAt(1));
+      corner.style.clipPath = corner.style.WebkitClipPath = getCornerPolygon(
+        up,
+        down,
+        side,
+        (r ? "l" : "r") + type.charAt(1)
+      );
       if (type.charAt(0) === "r") {
         bottomPage_left.style.clipPath = bottomPage_left.style.WebkitClipPath = "";
-        bottomPage_right.style.clipPath = bottomPage_right.style.WebkitClipPath = getHideCornerPolygon(up, down, side, type);
+        bottomPage_right.style.clipPath = bottomPage_right.style.WebkitClipPath = getHideCornerPolygon(
+          up,
+          down,
+          side,
+          type
+        );
       } else {
-        bottomPage_left.style.clipPath = bottomPage_left.style.WebkitClipPath = getHideCornerPolygon(up, down, side, type);
+        bottomPage_left.style.clipPath = bottomPage_left.style.WebkitClipPath = getHideCornerPolygon(
+          up,
+          down,
+          side,
+          type
+        );
         bottomPage_right.style.clipPath = bottomPage_right.style.WebkitClipPath = "";
       }
       var angle = Math.atan2(y, rate * (x - up)) / PI180;
@@ -451,7 +460,7 @@
         return {
           up: 0,
           down: 0,
-          side: 0
+          side: 0,
         };
       }
 
@@ -469,39 +478,39 @@
       return {
         up: up,
         down: down,
-        side: side
+        side: side,
       };
     }
     function cornerLimit(width, height, mp) {
       var pos = new vector2D(mp);
 
+      //滑鼠在書的中上座標
       var centerTopVector = pos.clone().sub({ x: width });
       var centerTopDistance = centerTopVector.length();
-      //滑鼠在書的中上座標
 
+      //滑鼠在書的中下座標
       var centerBottomVector = pos.clone().sub(width, height);
       var centerBottomDistance = centerBottomVector.length();
-      //滑鼠在書的中下座標
 
       var maxLength = new vector2D(width, height).length();
       if (pos.y > 0) {
         if (centerTopDistance > width) {
+          //滑鼠超過在書的中上座標極限做限制
           pos
             .set(centerTopVector)
             .scale(width / centerTopDistance)
             .add({ x: width });
-          //滑鼠超過在書的中上座標極限做限制
         }
       } else {
         if (centerBottomVector.x / centerBottomVector.y >= width / height) {
-          pos.set(0, 0);
           //滑鼠在書的中下座標的斜率對比書本斜率做限制
+          pos.set(0, 0);
         } else if (centerBottomDistance > maxLength) {
+          //滑鼠超過在書的中下座標極限做限制
           pos
             .set(centerBottomVector)
             .scale(maxLength / centerBottomDistance)
             .add(width, height);
-          //滑鼠超過在書的中下座標極限做限制
         }
       }
       return pos;
@@ -530,13 +539,13 @@
       lt: new vector2D(0, 0),
       rt: new vector2D(2 * width, 0),
       lb: new vector2D(0, height),
-      rb: new vector2D(2 * width, height)
+      rb: new vector2D(2 * width, height),
     };
     var fourCornerBool = {
       lt: true,
       rt: true,
       lb: true,
-      rb: true
+      rb: true,
     };
     var type = "lt";
     var pageNum = -1; /* + 2*/
@@ -567,22 +576,22 @@
       }
       return {
         pos: c,
-        dis: d
+        dis: d,
       };
     }
 
-    book.addEventListener("mousedown", function(e) {
+    book.addEventListener("mousedown", function (e) {
       start();
     });
-    window.addEventListener("mouseup", function(e) {
+    window.addEventListener("mouseup", function (e) {
       end();
     });
-    book.addEventListener("mousemove", function(e) {
+    window.addEventListener("mousemove", function (e) {
       move(new vector2D(e.pageX, e.pageY));
       corneringJudge();
     });
 
-    book.addEventListener("touchstart", function(e) {
+    book.addEventListener("touchstart", function (e) {
       var TP = TouchesPoint(e.touches);
       setMp(TP.pos);
       mpOld.set(mp);
@@ -590,18 +599,18 @@
       start();
       if (opening) {
         e.preventDefault();
-        e.stopPropagation();
+        //e.stopPropagation();
       }
     });
-    book.addEventListener("touchend", function(e) {
+    book.addEventListener("touchend", function (e) {
       end();
     });
-    book.addEventListener("touchmove", function(e) {
+    book.addEventListener("touchmove", function (e) {
       var TP = TouchesPoint(e.touches);
       move(TP.pos);
       if (opening) {
         e.preventDefault();
-        e.stopPropagation();
+        //e.stopPropagation();
       }
     });
     /*document.body.addEventListener(
@@ -656,10 +665,7 @@
           for (var key in fourCornerPos) {
             if (fourCornerBool[key]) {
               var obj = fourCornerPos[key];
-              var length = obj
-                .clone()
-                .sub(mp)
-                .length();
+              var length = obj.clone().sub(mp).length();
               if (length <= 100) {
                 if (type !== key) {
                   type = key;
@@ -688,7 +694,7 @@
       }
     }
 
-    buttonPrev.addEventListener("click", function(e) {
+    buttonPrev.addEventListener("click", function (e) {
       var type01 = "lt";
       if (!animationing && fourCornerBool[type01]) {
         if (type !== type01) {
@@ -701,7 +707,7 @@
         animationing = true;
       }
     });
-    buttonNext.addEventListener("click", function(e) {
+    buttonNext.addEventListener("click", function (e) {
       var type01 = "rt";
       if (!animationing && fourCornerBool[type01]) {
         if (type !== type01) {
@@ -779,18 +785,10 @@
 
       if (animationing) {
         var type01 = changeing ? (type.charAt(0) === "r" ? "l" : "r") + type.charAt(1) : type;
-        cornerPos.add(
-          fourCornerPos[type01]
-            .clone()
-            .sub(cornerPos)
-            .scale(0.2, 0.4)
-        );
+        cornerPos.add(fourCornerPos[type01].clone().sub(cornerPos).scale(0.2, 0.4));
         setCornerPos(width, height, cornerPos, type);
         var obj = fourCornerPos[type01];
-        var length = obj
-          .clone()
-          .sub(cornerPos)
-          .length();
+        var length = obj.clone().sub(cornerPos).length();
         if (length <= 1) {
           if (changeing) {
             if (type.charAt(0) === "r") {
@@ -809,12 +807,7 @@
           setCornerActive(pageNum);
         }
       } else if (opening || cornering) {
-        cornerPos.add(
-          mp
-            .clone()
-            .sub(cornerPos)
-            .scale(0.3)
-        );
+        cornerPos.add(mp.clone().sub(cornerPos).scale(0.3));
         setCornerPos(width, height, cornerPos, type);
       }
     }

@@ -4,14 +4,32 @@ body {
 * {
   font-family: "Noto Sans TC", sans-serif;
 }
+.wrap {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  /* background-image: linear-gradient(
+    -0deg,
+    hsla(161, 72%, 70%, 1) 0%,
+    hsla(48, 77%, 70%, 1) 50%,
+    hsla(0, 100%, 70%, 1) 100%
+  ); */
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-image: url(bg.jpg);
+}
 .pages {
   display: none;
 }
 .book {
   position: relative;
   display: block;
-  background-color: #ddd;
-  overflow: hidden;
+  /*background-color: #ddd;*/
+  /*overflow: hidden;*/
 }
 .book .bottom {
   position: absolute;
@@ -34,6 +52,8 @@ body {
 .book .content {
   position: relative;
   display: block;
+  -webkit-filter: drop-shadow(0px 3px 3px rgba(0, 0, 0, 0.1));
+  filter: drop-shadow(0px 3px 3px rgba(0, 0, 0, 0.1));
 }
 
 .book .content .openedBack {
@@ -69,29 +89,34 @@ body {
 .shadow {
   position: absolute;
   display: block;
-  //filter: blur(10px);
   pointer-events: none;
 }
 
 .bookControl {
-  position: absolute;
+  /*position: absolute;
   display: block;
   width: 100%;
   text-align: center;
   left: 0px;
-  bottom: 20px;
+  bottom: 20px;*/
+  position: relative;
+  display: block;
+  margin: 20px;
 }
-.button {
+.bookControl .button {
   position: relative;
   display: inline-block;
-  padding: 10px;
-  background-color: #fff;
-  border: 1px solid #aaa;
-  border-radius: 10px;
+  padding: 25px 10px;
+  background-color: rgba(238, 238, 238, 0.25);
+  border: 1px solid #ccc;
+  color: #eee;
+  border-radius: 5px;
   cursor: pointer;
+  box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.1);
 }
-.button:hover {
-  background-color: #ddd;
+.bookControl .button:hover {
+  border-color: #cc2;
+  color: #ee2;
 }
 .page {
   position: relative;
@@ -102,6 +127,8 @@ body {
   align-items: flex-end;*/
   /*background-position: 50% 0%;
   background-size: auto 100%;*/
+  border: 1px solid rgba(204, 204, 204, 0.25);
+  box-sizing: border-box;
 }
 .pageContent {
   position: relative;
@@ -113,35 +140,7 @@ body {
 /*.page:hover {
   animation: move 10s linear infinite;
 }*/
-#start {
-  background-position: center top;
-  background-size: cover;
-  background-image: url(https://firebasestorage.googleapis.com/v0/b/cai-pusc007.appspot.com/o/cai001%2Fcontent%2F3D%2F-L9dkK5XX1MCy54V2vBr?alt=media&token=c3863680-7c79-491a-b379-12618e921691);
-}
-#page01 {
-  background-color: #730303;
-  //background-image: url(https://firebasestorage.googleapis.com/v0/b/cai-pusc007.appspot.com/o/cai001%2Fcontent%2F3D%2F-L9dkBtBlcaxMFc_Q5v3?alt=media&token=a6d07052-a4af-4140-b877-212f2431ed7a);
-}
-#page02 {
-  background-color: #0f0;
-  //background-image: url(https://firebasestorage.googleapis.com/v0/b/cai-pusc007.appspot.com/o/cai001%2Fcontent%2F3D%2F-L9dkPDnqG_jiFIpWp4O?alt=media&token=2b84fd48-5f3e-4ea6-b82c-9b95d7a0de2a);
-}
-#page03 {
-  background-color: #00f;
-  //background-image: url(https://firebasestorage.googleapis.com/v0/b/cai-pusc007.appspot.com/o/cai001%2Fcontent%2F3D%2F-L9dkN41yOZOaMtuhxwk?alt=media&token=ac3e4d87-ee8a-4910-909f-83faa6e11867);
-}
-#page04 {
-  background-color: #ff0;
-  //background-image: url(https://firebasestorage.googleapis.com/v0/b/cai-pusc007.appspot.com/o/cai001%2Fcontent%2F3D%2F-L9dkRiH78_Wgq2WC0TY?alt=media&token=840a2c9a-3127-432e-8ad0-cd4bdf1d9d91);
-}
-#page05 {
-  background-color: #0ff;
-  //background-image: url(https://firebasestorage.googleapis.com/v0/b/cai-pusc007.appspot.com/o/cai001%2Fcontent%2F3D%2F-L9dkK5XX1MCy54V2vBr?alt=media&token=c3863680-7c79-491a-b379-12618e921691);
-}
-#page06 {
-  background-color: #f0f;
-  //background-image: url(https://firebasestorage.googleapis.com/v0/b/cai-pusc007.appspot.com/o/cai001%2Fcontent%2F3D%2F-L9dk9kA5KVW9fKyG7x9?alt=media&token=43ee59c9-f01a-455d-8336-c314723690b4);
-}
+
 .page .text {
   position: absolute;
   display: block;
@@ -201,4 +200,33 @@ body {
   top: 20px;
   background-color: #000;
   /*animation: rotate 2s linear infinite;*/
+}
+
+#start {
+  background-position: center top;
+  background-size: cover;
+  background-image: url(https://firebasestorage.googleapis.com/v0/b/cai-pusc007.appspot.com/o/cai001%2Fcontent%2F3D%2F-L9dkK5XX1MCy54V2vBr?alt=media&token=c3863680-7c79-491a-b379-12618e921691);
+}
+#page01 {
+  background-color: #000;
+}
+#page02 {
+  background-color: hsl(0, 100%, 90%);
+}
+#page03 {
+  background-color: hsl(120, 100%, 90%);
+}
+#page04 {
+  background-color: hsl(240, 100%, 90%);
+}
+#page05 {
+  background-color: hsl(300, 100%, 90%);
+}
+#page06 {
+  background-color: hsl(180, 100%, 90%);
+}
+#end {
+  background-position: center top;
+  background-size: cover;
+  background-image: url(https://firebasestorage.googleapis.com/v0/b/cai-pusc007.appspot.com/o/cai001%2Fcontent%2F3D%2F-L9dkK5XX1MCy54V2vBr?alt=media&token=c3863680-7c79-491a-b379-12618e921691);
 }
