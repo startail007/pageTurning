@@ -235,10 +235,11 @@
     }
 
     var PI180 = Math.PI / 180;
-    var width = 500;
-    var height = 400;
+    var width = Math.min(500, (window.innerWidth - 20) / 2);
+    var height = Math.min(400, window.innerHeight - 100);
     var rate = width / height;
-    var hypotenuse = Math.sqrt(width * width + height * height);
+    //var hypotenuse = Math.sqrt(width * width + height * height);
+    console.log(window.innerWidth);
 
     book.style.width = width * 2 + "px";
     book.style.height = height + "px";
