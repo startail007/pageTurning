@@ -236,7 +236,7 @@
 
     var PI180 = Math.PI / 180;
     var width = Math.min(500, (window.innerWidth - 20) / 2);
-    var height = Math.min(400, window.innerHeight - 100);
+    var height = Math.min(400, window.innerHeight - 140);
     var rate = width / height;
     //var hypotenuse = Math.sqrt(width * width + height * height);
     console.log(window.innerWidth);
