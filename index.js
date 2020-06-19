@@ -239,7 +239,7 @@
     var height = Math.min(400, window.innerHeight - 140);
     var rate = width / height;
     //var hypotenuse = Math.sqrt(width * width + height * height);
-    console.log(window.innerWidth);
+    //console.log(window.innerWidth);
 
     book.style.width = width * 2 + "px";
     book.style.height = height + "px";
@@ -669,6 +669,8 @@
               var length = obj.clone().sub(mp).length();
               if (length <= 100) {
                 if (type !== key) {
+                  back.classList.remove(type);
+                  corner.classList.remove(type);
                   type = key;
                   cornerPos.set(obj);
                   setCornerContent(pageNum, type);
@@ -699,6 +701,8 @@
       var type01 = "lt";
       if (!animationing && fourCornerBool[type01]) {
         if (type !== type01) {
+          back.classList.remove(type);
+          corner.classList.remove(type);
           type = type01;
           var obj = fourCornerPos[type];
           cornerPos.set(obj);
@@ -712,6 +716,8 @@
       var type01 = "rt";
       if (!animationing && fourCornerBool[type01]) {
         if (type !== type01) {
+          back.classList.remove(type);
+          corner.classList.remove(type);
           type = type01;
           var obj = fourCornerPos[type];
           cornerPos.set(obj);
@@ -743,12 +749,14 @@
         cornerEl = pagesList[n - 1];
       }
       if (backEl) {
+        back.classList.add(type);
         back_item.appendChild(backEl);
         back.style.display = "";
       } else {
         back.style.display = "none";
       }
       if (cornerEl) {
+        corner.classList.add(type);
         corner_item.appendChild(cornerEl);
         corner.style.display = "";
       } else {
