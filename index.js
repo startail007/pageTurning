@@ -216,12 +216,12 @@
     var corner_item = corner.querySelector(".item");
     var openedCorner = book.querySelector(".openedCorner");
 
-    var shadow = openedCorner.querySelector(".shadow");
+    /*var shadow = openedCorner.querySelector(".shadow");
     var shadow01 = openedCorner.querySelector(".shadow01");
     var shadow02 = openedCorner.querySelector(".shadow02");
 
     var corner_shadow01_color = openedCorner.querySelector("#shadow01");
-    var corner_shadow02_color = openedCorner.querySelector("#shadow02");
+    var corner_shadow02_color = openedCorner.querySelector("#shadow02");*/
     //var bookControl = document.querySelector(".bookControl");
     var buttonPrev = document.querySelector(".bookControl .button.prev");
     var buttonNext = document.querySelector(".bookControl .button.next");
@@ -255,7 +255,7 @@
     bottomPage_right.style.height = height + "px";
     bottomPage_right.style.left = width + "px";
     //book.style.padding = hypotenuse - height + 20 + "px" + " " + 20 + "px";//擴展延伸空間
-    shadow.style.width = width * 2;
+    /*shadow.style.width = width * 2;
     shadow.style.height = height;
     shadow01.x.baseVal.value = 0;
     shadow01.y.baseVal.value = 0;
@@ -264,7 +264,7 @@
     shadow02.x.baseVal.value = 0;
     shadow02.y.baseVal.value = 0;
     shadow02.width.baseVal.value = width * 2;
-    shadow02.height.baseVal.value = height;
+    shadow02.height.baseVal.value = height;*/
 
     function getCornerPolygon(up, down, side, type) {
       var polygon01 = new polygon();
@@ -394,7 +394,7 @@
       vv.normalize();
       vv.scale(nn * (width + 0));
 
-      if (up === 0) {
+      /*if (up === 0) {
         corner_shadow01_color.setLine(0, 0, 0, 0);
       } else {
         if (type.charAt(0) === "r") {
@@ -410,16 +410,16 @@
             corner_shadow01_color.setLine(up * width, 0, up * width + vv.y, vv.x);
           }
         }
-      }
+      }*/
 
       var c0 = 0;
       var c1 = nn * 0.3;
       var c2 = 0; //nn * 0.1 * (up * down === 0 ? 0 : easingFunctions.easeInExpo(down));
 
-      var corner_shadow01_color_children = corner_shadow01_color.children;
+      /*var corner_shadow01_color_children = corner_shadow01_color.children;
       corner_shadow01_color_children[0].style.stopColor = "rgba(0, 0, 0, " + c0 + ")";
       corner_shadow01_color_children[1].style.stopColor = "rgba(0, 0, 0, " + c1 + ")";
-      corner_shadow01_color_children[2].style.stopColor = "rgba(0, 0, 0, " + c2 + ")";
+      corner_shadow01_color_children[2].style.stopColor = "rgba(0, 0, 0, " + c2 + ")";*/
 
       var b_nn = side01 * 0.25 + easingFunctions.easeOutCubic(up) * 0.25 + easingFunctions.easeOutQuint(down) * 0.5;
       b_nn = 1 - b_nn;
@@ -427,7 +427,7 @@
       b_vv.normalize();
       b_vv.scale(nn * (width + 0));
 
-      if (up === 0) {
+      /*if (up === 0) {
         corner_shadow01_color.setLine(0, 0, 0, 0);
         corner_shadow02_color.setLine(0, 0, 0, 0);
       } else {
@@ -444,16 +444,16 @@
             corner_shadow02_color.setLine(up * width, 0, up * width - b_vv.y, -b_vv.x);
           }
         }
-      }
+      }*/
 
       var b_c0 = 0;
       var b_c1 = b_nn * 0.2;
       var b_c2 = 0; //b_nn * 0.1 * (up * down === 0 ? 0 : easingFunctions.easeOutExpo(down));
 
-      var corner_shadow02_color_children = corner_shadow02_color.children;
+      /*var corner_shadow02_color_children = corner_shadow02_color.children;
       corner_shadow02_color_children[0].style.stopColor = "rgba(0, 0, 0, " + b_c0 + ")";
       corner_shadow02_color_children[1].style.stopColor = "rgba(0, 0, 0, " + b_c1 + ")";
-      corner_shadow02_color_children[2].style.stopColor = "rgba(0, 0, 0, " + b_c2 + ")";
+      corner_shadow02_color_children[2].style.stopColor = "rgba(0, 0, 0, " + b_c2 + ")";*/
     }
     function cornerCate(width, height, mp) {
       var pos = new vector2D(mp);
